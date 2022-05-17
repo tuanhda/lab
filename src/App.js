@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import { Navbar, NavbarBrand } from 'reactstrap';
+import menu from './component/MenuComponent'
 import './App.css';
+import Menu from './component/MenuComponent';
 
 class App extends Component {
   render() {
@@ -12,6 +14,7 @@ class App extends Component {
             <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
           </div>
         </Navbar>
+        <Menu />
       </div>
     );
   }
