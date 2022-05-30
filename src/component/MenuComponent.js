@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-    Card, CardImg, CardImgOverlay, BreadcrumbItem, Breadcrumb,
-    CardTitle
-} from 'reactstrap';
+import { Card, CardImg, CardImgOverlay,
+    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function RenderMenuItem({ dish, onClick }) {
+function RenderMenuItem ({dish, onClick}) {
     return (
         <Card>
             <Link to={`/menu/${dish.id}`} >
@@ -37,13 +35,14 @@ const Menu = (props) => {
                 <div className="col-12">
                     <h3>Menu</h3>
                     <hr />
-                </div>
+                </div>                
             </div>
             <div className="row">
                 {menu}
             </div>
         </div>
     );
+    
 }
 
 export default Menu;
