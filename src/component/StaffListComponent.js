@@ -31,7 +31,7 @@ function StaffList(props) {
                         {staffs}   
                 </div>
                 <div className="row">
-                <StaffDetail staff={this.state.staffs} />
+                <StaffDetail staff={staffs} />
                 </div>
             </div>
     );

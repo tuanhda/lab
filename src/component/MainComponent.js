@@ -11,18 +11,12 @@ class Main extends Component {
       super(props);
       this.state = {
           staffs: STAFFS
-    }
+    };
 }
     render() {
       const HomePage = () => {
-        return (
-          <StaffList
-
-            staff={this.state.staffs.filter((staff) => staff.featured)[0]}
-                  
-          />
-        );
-      }
+        return <StaffList staff={this.state.staffs}/>;
+      };
         return (
             <div>
               <Header />

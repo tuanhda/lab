@@ -3,8 +3,10 @@ import { Card, CardText, CardTitle, CardImg, CardBody } from 'reactstrap';
 import  dateFormat  from "dateformat";
 
 class StaffDetail extends Component {
-    renderStaff(staff){
-        if(staff != null){
+    renderStaff(props){
+        const staff = props.staff;
+        if(props.staff != null){
+            console.log(staff);
             return(
                 <Card>
                     <CardBody>
