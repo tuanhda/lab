@@ -1,37 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Card, CardImg, CardImgOverlay,
-    CardTitle
+    CardTitle, Breadcrumb, BreadcrumbItem  
 } from 'reactstrap';
-import StaffDetail from './StaffDetailComponent';
+import { Link } from 'react-router-dom';
 
-function RenderStaff({ staff }) {
+
+function RenderStaff ({staff, onClick}) {
     return (
-        <div className="col-xs-6 col-sm-4 col-md-2">
-            <Card key={staff.id}
-                onClick={() => this.onStaffSelect(staff)}>
+        <Card>
+            <Link to={`/staff/${staff.id}`} >
+                <CardImg width="100%" src={staff.image} alt={staff.name} />
                 <CardTitle>{staff.name}</CardTitle>
-            </Card>
-        </div>
+            </Link>
+        </Card>
     );
 }
 
 function StaffList(props) {
     const staffs = props.staffs && props.staffs.map((staff) => {
         return (
-            <div className="row" key={staff.id}>
-                <RenderStaff staff={staff} />
+            <div className="col-xs-6 col-md-3 col-lg-2" key={staff.id}>
+                <RenderStaff staff={staff} onClick={props.onClick}/>
             </div>
         );
     });
 
     return (
             <div className="container">
+                 <Breadcrumb>
+                    <BreadcrumbItem>NHÂN VIÊN</BreadcrumbItem>
+                </Breadcrumb>
                 <div className="row">
                         {staffs}   
-                </div>
-                <div className="row">
-                <StaffDetail staff={staffs} />
                 </div>
             </div>
     );

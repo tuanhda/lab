@@ -1,42 +1,48 @@
-import React, {Component} from 'react';
-import { Card, CardText, CardTitle, CardImg, CardBody } from 'reactstrap';
-import  dateFormat  from "dateformat";
+import React, { Component } from 'react';
+import { Card, CardText, CardTitle, CardImg, CardBody, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import dateFormat from "dateformat";
+import { Link } from 'react-router-dom';
 
 class StaffDetail extends Component {
-    renderStaff(props){
-        const staff = props.staff;
-        if(props.staff != null){
-            console.log(staff);
-            return(
-                <Card>
-                    <CardBody>
-                        <CardTitle>Họ và tên: {staff.name}</CardTitle>
-                        <CardText>Ngày sinh: {dateFormat(staff.doBB , 'dd/mm/yyyy')}</CardText>
-                        <CardText>Ngày vào công ty: {dateFormat(staff.startDate , 'dd/mm/yyyy')}</CardText>
-                        <CardText>Phòng ban: {staff.department.name}</CardText>
-                        <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
-                        <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
-                    </CardBody>
-                </Card>
-            );
-        }
-        else
-        return(
-            <div>Bấm vào tên nhân viên để xem thông tin.</div>
-        )       
-    }
+  renderStaff(staff) {
+    if (staff != null)
+      return (
+        <div className=" row">
+        <div className="col-lg-3 col-md-4 col-xs-12">
+          <img
+            className="img"
+            src={staff.image}
+            style={{ width: "130%", height: "240px" }}
+            alt={staff.name}
+          />
+        </div>
+        <div key={staff.id} className="col-lg-9 col-md-8 col-xs-12">
+          <h3> {staff.name} </h3>
+          <p>Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}</p>
+          <p>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</p>
+          <p>Phòng ban: {staff.department.name}</p>
+          <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
+          <p>Số ngày đã làm thêm: {staff.overTime}</p>
+        </div>
+      </div>
+      );
+  }
 
-    render() {
-        return (
-            <div className="container">
-                <div className="row">
-                <div className="col-xs-12 col-sm-6 col-md-4">
-                        {this.renderStaff(this.props.staff)}
-                    </div>
-                </div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <Breadcrumb>
+            <BreadcrumbItem><Link to="/staff">Nhân viên</Link></BreadcrumbItem>
+            <BreadcrumbItem active>{this.props.staff.name}</BreadcrumbItem>
+          </Breadcrumb>
+          <div className="col-9 col-sm-9 col-md-7 col-lg-4">
+            {this.renderStaff(this.props.staff)}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default StaffDetail;
